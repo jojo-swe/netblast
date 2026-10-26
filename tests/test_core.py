@@ -1,4 +1,4 @@
-from netblast import blast_radius
+from netblast import blast_radius, invert
 
 
 def test_blast_radius_tracks_dependency_distance() -> None:
@@ -30,3 +30,10 @@ def test_blast_radius_starts_all_changed_nodes_at_zero() -> None:
 
 def test_blast_radius_with_no_changes_is_empty() -> None:
     assert blast_radius({"a": ["b"]}, []) == {}
+
+
+def test_invert_turns_depends_on_into_dependents() -> None:
+    depends_on = {"switch-b": ["router-a"], "service-c": ["switch-b"]}
+    dependents = {"router-a": ["switch-b"], "switch-b": ["service-c"]}
+    assert invert(depends_on) == dependents
+    assert blast_radius(invert(depends_on), ["router-a"]) == blast_radius(dependents, ["router-a"])

@@ -14,3 +14,12 @@ def blast_radius(graph: dict[str, list[str]], changed: list[str]) -> dict[str, i
                 distance[dependent] = distance[node] + 1
                 queue.append(dependent)
     return distance
+
+
+def invert(graph: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Flip a depends-on graph into the node-to-dependents form ``blast_radius`` expects."""
+    inverted: dict[str, list[str]] = {}
+    for node, targets in graph.items():
+        for target in targets:
+            inverted.setdefault(target, []).append(node)
+    return inverted
