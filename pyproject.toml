@@ -11,6 +11,9 @@ requires-python = ">=3.11"
 license = {text = "Apache-2.0"}
 authors = [{name = "John Johansson"}]
 
+[project.scripts]
+netblast = "netblast.cli:main"
+
 [project.optional-dependencies]
 dev = ["pytest>=8", "ruff>=0.5"]
 
