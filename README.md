@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/assets/logo.svg" alt="netblast logo" width="128"></p>
+
 # NetBlast
 
 Estimate the blast radius of a network change from structured dependencies.
